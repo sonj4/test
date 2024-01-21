@@ -1,0 +1,31 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: calc(10px + 0.5vw);
+  height: 50px;
+  background-color: black;
+  position: relative;
+  top: 0;
+}
+
+.logo {
+  width: 150px;
+  height: auto;
+}
+
+.lang {
+  color: white;
+  cursor: pointer;
+}
+
+.lang {
+  color: #fff;
+  font-size: 1.5rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  letter-spacing: 1px;
+  font-style: normal;
+  text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #ff0076,
+    0 0 82px #ff0076, 0 0 92px #ff0076, 0 0 102px #ff0076, 0 0 151px #ff0076;
+}

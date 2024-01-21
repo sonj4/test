@@ -1,0 +1,13 @@
+.App {
+  text-align: center;
+  background-image: url("/public/bg.png");
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+* {
+  font-family: "Poppins", sans-serif;
+}

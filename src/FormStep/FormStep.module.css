@@ -1,0 +1,32 @@
+.formStep {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin: 0 auto;
+
+  max-width: 900px;
+  height: 70%;
+  top: 50px;
+  border: 10px solid #ff0076;
+  border-radius: 1rem;
+  z-index: 1;
+}
+
+.blurBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.9);
+  filter: blur(7px);
+  z-index: -1;
+}
+
+form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: calc(5px + 0.2vw);
+  width: 100%;
+}

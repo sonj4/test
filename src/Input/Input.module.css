@@ -1,0 +1,38 @@
+.inputField,
+.selectField {
+  background: none;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #ff0076;
+}
+
+.inputLabel {
+  color: #ff0076;
+}
+
+.inputField.error,
+.selectField.error {
+  border-bottom: 1px solid #ff0000;
+}
+
+.inputLabel.error {
+  color: #ff0000;
+}
+
+.errorMsg {
+  font-size: 0.6rem;
+  color: #ff0000;
+}
+
+.validMsg {
+  font-size: 0.6rem;
+  color: #3dff3d;
+}
+
+.inputField.valid,
+.selectField.valid {
+  border-bottom: 1px solid #3dff3d;
+}
+.inputLabel.valid {
+  color: #3dff3d;
+}
