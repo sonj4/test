@@ -1,46 +1,72 @@
-import React from "react";
-import styles from "./Input.module.css";
-import { useState } from "react";
-import { validateField } from "../validate";
+import React from 'react';
+import styles from './Input.module.css';
+import { useState } from 'react';
+import { validateField } from '../validateField';
+import { useRegistrationData } from '../context';
 
-export default function Input({ field }) {
+export default function Input({ field, step }) {
   const [inputValue, setInputValue] = useState(field.defaultValue);
   const [isValid, setIsValid] = useState(
-    field.code === "gender" ? true : false
+    field.code === 'gender' || field.code === 'countrycode' ? true : false
   );
-  const [errMsg, setErrMsg] = useState("");
+  const [errMsg, setErrMsg] = useState('');
+
+  const {
+    registrationDataFromStep1,
+    updateRegistrationDataFromStep1,
+
+    updateFieldValidityFromStep1,
+
+    updateRegistrationDataFromStep2,
+
+    updateFieldValidityFromStep2,
+
+  } = useRegistrationData();
 
   const handleChange = (event) => {
     const { isValid, validationErrors } = validateField(
       event.target.value,
       field.validators,
-      ""
+      registrationDataFromStep1.password
     );
     setInputValue(event.target.value);
     setIsValid(isValid);
-    setErrMsg(validationErrors.join("-"));
-    console.log(event.target.value);
-    console.log(isValid);
-    console.log(validationErrors.join("-"));
+    setErrMsg(validationErrors.join(','));
+    //console.log(event.target.value);
+    //console.log(isValid);
+    //console.log(validationErrors.join('-'));
+    console.log('REGISTRATION DATA', registrationDataFromStep1);
+    if (step === 1) {
+      updateRegistrationDataFromStep1(field.code, event.target.value);
+      updateFieldValidityFromStep1(field.code, isValid);
+    } else if (step === 2) {
+      updateRegistrationDataFromStep2(field.code, event.target.value);
+      updateFieldValidityFromStep2(field.code, isValid);
+    }
   };
 
-  const inputType =
-    field.fieldType === "string"
-      ? "text"
-      : field.fieldType === "dropdown"
-      ? "dropdown"
-      : field.fieldType === "date"
-      ? "date"
-      : field.fieldType === "password"
-      ? "password"
-      : "";
+  // const handleBlur = (e) => {
+  //   updateRegistrationDataFromStep1(field.code, e.target.value);
+  //   updateFieldValidityFromStep1(field.code, isValid);
+  // }
 
-  if (inputType === "dropdown") {
+  const inputType =
+    field.fieldType === 'string'
+      ? 'text'
+      : field.fieldType === 'dropdown'
+      ? 'dropdown'
+      : field.fieldType === 'date'
+      ? 'date'
+      : field.fieldType === 'password'
+      ? 'password'
+      : '';
+
+  if (inputType === 'dropdown') {
     const options = field.valueList.sort((a, b) => a.order - b.order);
     return (
       <>
         <label
-          htmlFor={field.code}
+          htmlFor={field.name}
           className={
             isValid
               ? `${styles.inputLabel} ${styles.valid}`
@@ -49,33 +75,37 @@ export default function Input({ field }) {
         >
           {field.name}
         </label>
-        <select
-          name={field.code}
-          id={field.code}
-          required={field.required ? field.required : false}
-          value={inputValue}
-          onChange={(e) => handleChange(e)}
-          className={
-            isValid
-              ? `${styles.selectField} ${styles.valid}`
-              : `${styles.selectField} ${styles.error}`
-          }
-        >
-          {options.map((option) => {
-            return (
-              <option key={option.value} value={option.value}>
-                {option.name}
-              </option>
-            );
-          })}
-        </select>
+        <div className={styles.inputErrorMsgContainer}>
+          <select
+            name={field.name}
+            id={field.code}
+            required={field.required ? field.required : false}
+            value={inputValue}
+            onChange={(e) => handleChange(e)}
+            //onBlur={(e) => handleBlur(e)}
+            className={
+              isValid
+                ? `${styles.selectField} ${styles.valid}`
+                : `${styles.selectField} ${styles.error}`
+            }
+          >
+            {options.map((option) => {
+              return (
+                <option key={option.value} value={option.value}>
+                  {option.name}
+                </option>
+              );
+            })}
+          </select>
+          {!isValid && <span className={styles.errorMsg}>{errMsg}</span>}
+        </div>
       </>
     );
   } else {
     return (
       <>
         <label
-          htmlFor={field.code}
+          htmlFor={field.name}
           className={
             isValid
               ? `${styles.inputLabel} ${styles.valid}`
@@ -84,19 +114,23 @@ export default function Input({ field }) {
         >
           {field.name}
         </label>
-        <input
-          type={inputType}
-          name={field.code}
-          id={field.code}
-          required={field.required ? field.required : false}
-          value={inputValue}
-          onChange={(e) => handleChange(e)}
-          className={
-            isValid
-              ? `${styles.inputField} ${styles.valid}`
-              : `${styles.inputField} ${styles.error}`
-          }
-        />
+        <div className={styles.inputErrorMsgContainer}>
+          <input
+            type={inputType}
+            name={field.name}
+            id={field.code}
+            required={field.required ? field.required : false}
+            value={inputValue}
+            onChange={(e) => handleChange(e)}
+            className={
+              isValid
+                ? `${styles.inputField} ${styles.valid}`
+                : `${styles.inputField} ${styles.error}`
+            }
+            //onBlur={(e) => handleBlur(e)}
+          />
+          {!isValid && <span className={styles.errorMsg}>{errMsg}</span>}
+        </div>
       </>
     );
   }

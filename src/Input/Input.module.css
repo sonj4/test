@@ -4,6 +4,7 @@
   border: none;
   outline: none;
   border-bottom: 1px solid #ff0076;
+  width: 70%;
 }
 
 .inputLabel {
@@ -17,6 +18,7 @@
 
 .inputLabel.error {
   color: #ff0000;
+  font-weight: 700;
 }
 
 .errorMsg {
@@ -35,4 +37,14 @@
 }
 .inputLabel.valid {
   color: #3dff3d;
+  font-weight: 700;
+}
+
+.inputErrorMsgContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
 }

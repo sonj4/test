@@ -201,7 +201,7 @@
       "fieldType": "dropdown",
       "dataType": "dropdown",
       "order": 5,
-      "defaultValue": "",
+      "defaultValue": "M",
       "required": false,
       "step": 1,
       "Updatable": true,

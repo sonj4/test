@@ -1,16 +1,17 @@
 .formStep {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   position: relative;
   margin: 0 auto;
-
+  flex-direction: column;
   max-width: 900px;
   height: 70%;
   top: 50px;
   border: 10px solid #ff0076;
   border-radius: 1rem;
   z-index: 1;
+  
 }
 
 .blurBackground {
@@ -29,4 +30,13 @@ form {
   grid-template-columns: repeat(2, 1fr);
   gap: calc(5px + 0.2vw);
   width: 100%;
+}
+
+.title {
+  font-size: 2rem;
+  letter-spacing: 1px;
+  font-weight: 700;
+  color: #ff0077;
+  text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #ff0076,
+  0 0 82px #ff0076, 0 0 92px #ff0076, 0 0 102px #ff0076, 0 0 151px #ff0076;
 }

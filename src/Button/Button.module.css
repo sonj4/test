@@ -1,0 +1,23 @@
+.btn {
+    background: none;
+    outline: none;
+    border: none;
+    border-radius: 1rem;
+    padding: 10px 20px; 
+    color: white; 
+    font-size: 1em; 
+    cursor: pointer; 
+    background-image: linear-gradient(to right, #ff0076, #fd78b6); 
+    transition: background-color 0.3s ease-in; 
+}
+
+.btn:hover, .btn:focus {
+    background-image: linear-gradient(to right, #fd78b6, #ff0076); 
+}
+
+.btn.disabled, .btn:disabled {
+    background-image: linear-gradient(to right, #cccccc, #e6e6e6); 
+    cursor: default; 
+    color: #666666; 
+    pointer-events: none; 
+}

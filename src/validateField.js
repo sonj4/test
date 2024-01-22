@@ -1,6 +1,7 @@
 export const validateField = (value, validators, password) => {
   let isValid = true;
   let validationErrors = [];
+
   console.log(value);
   validators.forEach((validator) => {
     switch (validator.key) {
@@ -37,7 +38,7 @@ export const validateField = (value, validators, password) => {
         let dateValue = new Date(value);
 
         const today = new Date();
-        const age = today.getFullYear() - dateValue.getFullYear();
+        let age = today.getFullYear() - dateValue.getFullYear();
         const m = today.getMonth() - dateValue.getMonth();
 
         if (m < 0 || (m === 0 && today.getDate() < dateValue.getDate())) {
@@ -68,6 +69,7 @@ export const validateField = (value, validators, password) => {
           validationErrors.push(validator.invalid_message);
         }
         break;
+    
     }
   });
 
