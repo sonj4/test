@@ -18,7 +18,6 @@ function App() {
         return response.json();
       })
       .then((data) => {
-       // console.log(data);
         const sortedByOrder = data.fields.sort((a, b) => a.order - b.order);
         const step1Fields = sortedByOrder.filter((field) => field.step === 1);
         const step2Fields = sortedByOrder.filter((field) => field.step === 2);
@@ -32,7 +31,6 @@ function App() {
   
   useEffect(() => {
     fetchJson();
-console.log(success)
     // if (success) {
     //   const handleScreenClick = () => setSuccess(false);
     //   window.addEventListener('click', handleScreenClick);

@@ -1,0 +1,17 @@
+{
+    "phone": "Phone",
+    "address": "Address",
+    "username": "Username",
+    "fname": "First Name",
+    "lname": "Last Name",
+    "email": "E-mail",
+    "birthdate": "Birthdate",
+    "gender": "Gender",
+    "password": "Password",
+    "password_confirm":"Password Confirmation",
+    "city":"City",
+    "countrycode":"Countrycode",
+    "next":"Next",
+    "submit":"Submit",
+    "title":"REGISTER ON OUR WEBSITE!"
+}

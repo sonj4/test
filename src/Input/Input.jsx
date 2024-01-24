@@ -3,6 +3,7 @@ import styles from './Input.module.css';
 import { useState } from 'react';
 import { validateField } from '../validateField';
 import { useRegistrationData } from '../context';
+import { useTranslation } from 'react-i18next';
 
 export default function Input({ field, step }) {
   const [inputValue, setInputValue] = useState(field.defaultValue);
@@ -11,16 +12,14 @@ export default function Input({ field, step }) {
   );
   const [errMsg, setErrMsg] = useState('');
 
+  const { t } = useTranslation();
+
   const {
     registrationDataFromStep1,
     updateRegistrationDataFromStep1,
-
     updateFieldValidityFromStep1,
-
     updateRegistrationDataFromStep2,
-
     updateFieldValidityFromStep2,
-
   } = useRegistrationData();
 
   const handleChange = (event) => {
@@ -32,10 +31,6 @@ export default function Input({ field, step }) {
     setInputValue(event.target.value);
     setIsValid(isValid);
     setErrMsg(validationErrors.join(','));
-    //console.log(event.target.value);
-    //console.log(isValid);
-    //console.log(validationErrors.join('-'));
-    console.log('REGISTRATION DATA', registrationDataFromStep1);
     if (step === 1) {
       updateRegistrationDataFromStep1(field.code, event.target.value);
       updateFieldValidityFromStep1(field.code, isValid);
@@ -66,14 +61,15 @@ export default function Input({ field, step }) {
     return (
       <>
         <label
-          htmlFor={field.name}
+          htmlFor={field.code}
           className={
             isValid
               ? `${styles.inputLabel} ${styles.valid}`
               : `${styles.inputLabel} ${styles.error}`
           }
         >
-          {field.name}
+          {/* {field.name} */}
+          {t(field.code)}
         </label>
         <div className={styles.inputErrorMsgContainer}>
           <select
@@ -105,14 +101,12 @@ export default function Input({ field, step }) {
     return (
       <>
         <label
-          htmlFor={field.name}
+          htmlFor={field.code}
           className={
-            isValid
-              ? `${styles.inputLabel} ${styles.valid}`
-              : `${styles.inputLabel} ${styles.error}`
+            `${styles.inputLabel} ${isValid ? styles.valid : styles.error} ${field.required ? styles.required : ''}`
           }
         >
-          {field.name}
+          {t(field.code)}
         </label>
         <div className={styles.inputErrorMsgContainer}>
           <input
@@ -128,6 +122,7 @@ export default function Input({ field, step }) {
                 : `${styles.inputField} ${styles.error}`
             }
             //onBlur={(e) => handleBlur(e)}
+            autoComplete='off'
           />
           {!isValid && <span className={styles.errorMsg}>{errMsg}</span>}
         </div>

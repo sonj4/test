@@ -48,3 +48,9 @@
   position: relative;
   width: 100%;
 }
+
+.inputLabel.valid.required::after,
+.inputLabel.error.required::after {
+  content: " *";
+  color: red;
+}

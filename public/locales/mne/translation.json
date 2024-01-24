@@ -1,0 +1,17 @@
+{
+    "phone": "Broj telefona",
+    "address": "Adresa",
+    "username": "Korisničko ime",
+    "fname": "Ime",
+    "lname": "Prezime",
+    "email": "E-mail",
+    "birthdate": "Datum rođenja",
+    "gender": "Pol",
+    "password": "Lozinka",
+    "password_confirm":"Ponovite lozinku",
+    "city":"Grad",
+    "countrycode":"Državni pozivni broj",
+    "next":"Sledeće",
+    "submit":"Registruj se",
+    "title":"REGISTRUJ SE NA NAŠ SAJT!"
+}
