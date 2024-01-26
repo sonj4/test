@@ -1,16 +1,16 @@
-import React from 'react';
-import styles from './Input.module.css';
-import { useState } from 'react';
-import { validateField } from '../validateField';
-import { useRegistrationData } from '../context';
-import { useTranslation } from 'react-i18next';
+import React from "react";
+import styles from "./Input.module.css";
+import { useState } from "react";
+import { validateField } from "../validateField";
+import { useRegistrationData } from "../context";
+import { useTranslation } from "react-i18next";
 
 export default function Input({ field, step }) {
   const [inputValue, setInputValue] = useState(field.defaultValue);
   const [isValid, setIsValid] = useState(
-    field.code === 'gender' || field.code === 'countrycode' ? true : false
+    field.code === "gender" || field.code === "countrycode" ? true : false
   );
-  const [errMsg, setErrMsg] = useState('');
+  const [errMsg, setErrMsg] = useState("");
 
   const { t } = useTranslation();
 
@@ -30,7 +30,7 @@ export default function Input({ field, step }) {
     );
     setInputValue(event.target.value);
     setIsValid(isValid);
-    setErrMsg(validationErrors.join(','));
+    setErrMsg(validationErrors.join(","));
     if (step === 1) {
       updateRegistrationDataFromStep1(field.code, event.target.value);
       updateFieldValidityFromStep1(field.code, isValid);
@@ -40,23 +40,18 @@ export default function Input({ field, step }) {
     }
   };
 
-  // const handleBlur = (e) => {
-  //   updateRegistrationDataFromStep1(field.code, e.target.value);
-  //   updateFieldValidityFromStep1(field.code, isValid);
-  // }
-
   const inputType =
-    field.fieldType === 'string'
-      ? 'text'
-      : field.fieldType === 'dropdown'
-      ? 'dropdown'
-      : field.fieldType === 'date'
-      ? 'date'
-      : field.fieldType === 'password'
-      ? 'password'
-      : '';
+    field.fieldType === "string"
+      ? "text"
+      : field.fieldType === "dropdown"
+      ? "dropdown"
+      : field.fieldType === "date"
+      ? "date"
+      : field.fieldType === "password"
+      ? "password"
+      : "";
 
-  if (inputType === 'dropdown') {
+  if (inputType === "dropdown") {
     const options = field.valueList.sort((a, b) => a.order - b.order);
     return (
       <>
@@ -78,7 +73,6 @@ export default function Input({ field, step }) {
             required={field.required ? field.required : false}
             value={inputValue}
             onChange={(e) => handleChange(e)}
-            //onBlur={(e) => handleBlur(e)}
             className={
               isValid
                 ? `${styles.selectField} ${styles.valid}`
@@ -102,9 +96,9 @@ export default function Input({ field, step }) {
       <>
         <label
           htmlFor={field.code}
-          className={
-            `${styles.inputLabel} ${isValid ? styles.valid : styles.error} ${field.required ? styles.required : ''}`
-          }
+          className={`${styles.inputLabel} ${
+            isValid ? styles.valid : styles.error
+          } ${field.required ? styles.required : ""}`}
         >
           {t(field.code)}
         </label>
@@ -121,8 +115,7 @@ export default function Input({ field, step }) {
                 ? `${styles.inputField} ${styles.valid}`
                 : `${styles.inputField} ${styles.error}`
             }
-            //onBlur={(e) => handleBlur(e)}
-            autoComplete='off'
+            autoComplete="off"
           />
           {!isValid && <span className={styles.errorMsg}>{errMsg}</span>}
         </div>

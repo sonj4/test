@@ -13,5 +13,6 @@
     "countrycode":"Državni pozivni broj",
     "next":"Sledeće",
     "submit":"Registruj se",
-    "title":"REGISTRUJ SE NA NAŠ SAJT!"
+    "title":"REGISTRUJ SE NA NAŠ SAJT!",
+    "success":"Uspjesna registracija!"
 }

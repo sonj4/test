@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { RegistrationDataProvider } from "./context";
 import FormStep from "./FormStep/FormStep";
 
-import Confetti from 'react-confetti'
+import Confetti from "react-confetti";
 
 function App() {
   const [data, setData] = useState(null);
@@ -12,7 +12,7 @@ function App() {
   const [success, setSuccess] = useState(false);
   const width = window.innerWidth;
   const height = window.innerHeight;
-  const fetchJson = () => {  
+  const fetchJson = () => {
     fetch("./sampleData.json")
       .then((response) => {
         return response.json();
@@ -28,28 +28,31 @@ function App() {
       });
   };
 
-  
   useEffect(() => {
     fetchJson();
-    // if (success) {
-    //   const handleScreenClick = () => setSuccess(false);
-    //   window.addEventListener('click', handleScreenClick);
-
-    //   return () => window.removeEventListener('click', handleScreenClick);
-    // }
   }, [success]);
 
   if (!data) {
-    return <div>Loading...</div>; 
+    return <div>Loading...</div>;
   }
 
   return (
-   <RegistrationDataProvider initialData={data}>
+    <RegistrationDataProvider initialData={data}>
       <div className="App">
         <Header />
-        {success && <Confetti width={width} height={height}/>}
-        {step === 1 && <FormStep fields={data.step1} step={step} setStep={setStep}/>}
-        {step === 2 && <FormStep fields={data.step2} step={step} setStep={setStep} setSuccess={setSuccess}/>}
+        {success && <Confetti width={width} height={height} />}
+        {step === 1 && (
+          <FormStep fields={data.step1} step={step} setStep={setStep} />
+        )}
+        {step === 2 && (
+          <FormStep
+            fields={data.step2}
+            step={step}
+            setStep={setStep}
+            success={success}
+            setSuccess={setSuccess}
+          />
+        )}
       </div>
     </RegistrationDataProvider>
   );

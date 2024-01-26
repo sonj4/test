@@ -13,5 +13,6 @@
     "countrycode":"Countrycode",
     "next":"Next",
     "submit":"Submit",
-    "title":"REGISTER ON OUR WEBSITE!"
+    "title":"REGISTER ON OUR WEBSITE!",
+    "success":"Successful registration!"
 }

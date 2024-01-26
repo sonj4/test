@@ -1,16 +1,29 @@
-import React from 'react';
-import styles from './FormStep.module.css';
-import Input from '../Input/Input';
-import { useRegistrationData } from '../context';
-import Button from '../Button/Button';
-import { useTranslation } from 'react-i18next';
+import React from "react";
+import styles from "./FormStep.module.css";
+import Input from "../Input/Input";
+import { useRegistrationData } from "../context";
+import Button from "../Button/Button";
+import { useTranslation } from "react-i18next";
 
-export default function FormStep({ fields, step, setStep, setSuccess }) {
-  const { isStep1FormValid, isStep2FormValid } = useRegistrationData();
+export default function FormStep({
+  fields,
+  step,
+  setStep,
+  success,
+  setSuccess,
+}) {
+  const {
+    isStep1FormValid,
+    isStep2FormValid,
+    registrationDataFromStep1,
+    registrationDataFromStep2,
+  } = useRegistrationData();
   const isNextDisabled = isStep1FormValid();
   const isSubmitDisabled = isStep2FormValid();
 
   const handleSubmit = () => {
+    console.log(registrationDataFromStep1);
+    console.log(registrationDataFromStep2);
     setSuccess(true);
   };
 
@@ -19,8 +32,8 @@ export default function FormStep({ fields, step, setStep, setSuccess }) {
   return (
     <div className={styles.formStep}>
       <div className={styles.blurBackground}></div>
-      <p className={styles.title}>{t('title')}</p>
-      <form >
+      <p className={styles.title}>{t("title")}</p>
+      <form>
         {Array.isArray(fields) &&
           fields.map((field) => {
             return (
@@ -34,13 +47,16 @@ export default function FormStep({ fields, step, setStep, setSuccess }) {
       </form>
       {step === 1 && (
         <Button disabled={!isNextDisabled} onClick={() => setStep(2)}>
-          {t('next')}
+          {t("next")}
         </Button>
       )}
       {step === 2 && (
-        <Button disabled={!isSubmitDisabled} onClick={() => handleSubmit()}>
-          {t('submit')}
-        </Button>
+        <>
+          <Button disabled={!isSubmitDisabled} onClick={() => handleSubmit()}>
+            {t("submit")}
+          </Button>
+          {success && <span>{t("success")}</span>}
+        </>
       )}
     </div>
   );
